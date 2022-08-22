@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import styled, { createGlobalStyle } from 'styled-components';
+import Task from './components/Task';
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    background: #e9ecef
+  }
+`;
+const TodoContainer = styled.main`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
 
 function App() {
+  const date = new Date();
+  const today = date.toLocaleString('ko-KR', {
+    month: 'long',
+    day: 'numeric',
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <TodoContainer>
+        <header>
+          <h3>{today}의 TODO</h3>
+        </header>
+        <Task></Task>
+      </TodoContainer>
+    </>
   );
 }
 
